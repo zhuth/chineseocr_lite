@@ -11,6 +11,7 @@ function postImg(){
         jQuery.ajax({
             type: "post",
             url: 'ocr',
+            contentType: 'application/json',
             data:JSON.stringify({"billModel":imgJson["billModel"],
                                     "imgString":imgJson["imgString"],
                                     "textAngle":imgJson["textAngle"],

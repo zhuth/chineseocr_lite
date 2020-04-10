@@ -1,4 +1,4 @@
-$def with(post)
+{% block page %}
 <script type="text/javascript" src="static/js/jquery.js"></script>   
 <script type="text/javascript" src="static/js/jquery.form.js"></script> 
 <script type="text/javascript" src="static/js/helps.js"></script> 
@@ -68,15 +68,15 @@ imgRate=1;
    <br>
    <div >
        
-       $for i,bill in enumerate(post['billList']):
-            <div style="font-size:10px" class="class_div" onclick="getBill('$bill',this,$i)">
-            <span class="margin-r" style="font-size:110%">$bill</span>
+       {% for bill in post['billList'] %}
+            <div style="font-size:10px" class="class_div" onclick="getBill('{{ bill }}',this,{{ loop.index }})">
+            <span class="margin-r" style="font-size:110%">{{ bill }}</span>
             <label class="el-switch el-switch-sm">
-            <input type="checkbox" name="switch" id="billModel_$i">
+            <input type="checkbox" name="switch" id="billModel_{{ loop.index }}">
             <span class="el-switch-style"></span>
             </label>
             </div>
-       
+       {% endfor %}
    </div>
     <br>
       <div class="image-input-container" style="osition: absolute; left: 50%; top: 20%; ">
@@ -107,7 +107,7 @@ imgRate=1;
  <!#############################识别结果######################################################### ---->   
                 <div style="position: absolute; left: 68%; top: 12%;" >
                     <div class="json">
-                        <div class="json-request-title" id="billmodelname">$post.get('name')</div>
+                        <div class="json-request-title" id="billmodelname">{{ request.name }}</div>
                             <div style="height:500px;width:300px; overflow:scroll;">
                                 <div id="billNameList"></div>
                                 <div id="mytable"></div>
@@ -147,4 +147,4 @@ imgRate=1;
 setInterval(cycle,700); //动画显示box   
     
 </script> 
-
+{% endblock %}
